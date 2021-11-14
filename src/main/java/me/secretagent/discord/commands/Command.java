@@ -2,8 +2,8 @@ package me.secretagent.discord.commands;
 
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Role;
-
 import java.util.List;
+import java.util.Collections;
 
 public abstract class Command {
 
@@ -21,7 +21,7 @@ public abstract class Command {
     }
 
     public List<Role> getRoles() {
-        return Arrays.asList();
+        return Collections.emptyList();
     }
 
     public void onCalled(CommandEvent event) {

@@ -33,7 +33,7 @@ public class CommandManager extends ListenerAdapter {
         args.addAll(Arrays.asList(msg.split(" ")));
         for (Command command : commands) {
             if (command.getPermission() != null && !event.getMember().hasPermission(command.getPermission())) return;
-            if (command.getRoles() != null) {
+            if (command.getRoles().size() > 0) {
                 boolean hasRole = false;
                 for (Role role : event.getMember().getRoles()) {
                     if (command.getRoles().contains(role)) {

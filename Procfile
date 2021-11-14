@@ -1,1 +1,1 @@
-Worker: java me.secretagent.discord.Start.java
+web: java -cp target/classes/;target/dependency/* me.secretagent.discord.Start

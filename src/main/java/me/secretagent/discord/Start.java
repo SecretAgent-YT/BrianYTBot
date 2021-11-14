@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class Start {
 
     public static void main(String args[]) throws Exception {
+        System.out.println("Hello World!");
         JSONObject object = new JSONObject();
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
         server.createContext("/", new HttpHandler() {

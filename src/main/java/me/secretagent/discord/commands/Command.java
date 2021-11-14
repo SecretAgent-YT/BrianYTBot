@@ -21,7 +21,7 @@ public abstract class Command {
     }
 
     public List<Role> getRoles() {
-        return null;
+        return Arrays.asList();
     }
 
     public void onCalled(CommandEvent event) {

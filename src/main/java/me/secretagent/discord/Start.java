@@ -15,18 +15,20 @@ import java.util.Scanner;
 public class Start {
 
     public static void main(String args[]) throws Exception {
-        System.out.println("Hello World!");
         JSONObject object = new JSONObject();
-        HttpServer server = HttpServer.create(new InetSocketAddress(Integer.parseInt(System.getenv("PORT"))), 0);
-        server.createContext("/", new HttpHandler() {
-            @Override
-            public void handle(HttpExchange httpExchange) throws IOException {
-                byte[] response = "B_RIANYT BOT".getBytes();
-                httpExchange.sendResponseHeaders(200, response.length);
-                OutputStream os = httpExchange.getResponseBody();
-                os.write(response);
-                os.close();
-            }
+        int port;
+        if (System.getenv("PORT") != null) {
+            port = Integer.parseInt(System.getenv("PORT"));
+        } else {
+            port = 8000;
+        }
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+        server.createContext("/", httpExchange -> {
+            byte[] response = "B_RIANYT BOT".getBytes();
+            httpExchange.sendResponseHeaders(200, response.length);
+            OutputStream os = httpExchange.getResponseBody();
+            os.write(response);
+            os.close();
         });
         server.start();
         object.put("token", "OTAzMDI5NTk0NzAwMDE3NjY0.YXnB2A.Gh6VvYck7jY3fWX2htocq9r4ezc");

@@ -32,20 +32,20 @@ public class CommandManager extends ListenerAdapter {
         ArrayList<String> args = new ArrayList<>();
         args.addAll(Arrays.asList(msg.split(" ")));
         for (Command command : commands) {
-            if (command.getPermission() != null && !event.getMember().hasPermission(command.getPermission())) return;
-            if (command.getRoles().size() > 0) {
-                boolean hasRole = false;
-                for (Role role : event.getMember().getRoles()) {
-                    if (command.getRoles().contains(role)) {
-                        hasRole = true;
+            if (msg.startsWith(command.getName())) {
+                if (command.getPermission() != null && !event.getMember().hasPermission(command.getPermission())) return;
+                if (command.getRoles().size() > 0) {
+                    boolean hasRole = false;
+                    for (Role role : event.getMember().getRoles()) {
+                        if (command.getRoles().contains(role)) {
+                            hasRole = true;
+                        }
+                    }
+                    if (!hasRole) {
+                        event.getTextChannel().sendMessage("Hi! Apparently, you don't have the role required to run that command!\nIf you believe this is a mistake, please contact the admins").queue();
+                        return;
                     }
                 }
-                if (!hasRole) {
-                    event.getTextChannel().sendMessage("Hi! Apparently, you don't have the role required to run that command!\nIf you believe this is a mistake, please contact the admins").queue();
-                    return;
-                }
-            }
-            if (msg.startsWith(command.getName())) {
                 args.remove(command.getName());
                 CommandEvent commandEvent = new CommandEvent(event, args);
                 command.onCalled(commandEvent);

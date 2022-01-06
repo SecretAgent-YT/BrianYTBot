@@ -31,7 +31,7 @@ public class Start {
             os.close();
         });
         server.start();
-        object.put("token", "OTAzMDI5NTk0NzAwMDE3NjY0.YXnB2A.Gh6VvYck7jY3fWX2htocq9r4ezc");
+        object.put("token", "uthought");
         object.put("prefix", ";");
         object.put("uploadChannelID", "762822345639198742");
         BrianBot brianBot = new BrianBot(object, Arrays.asList("oatmeal"));
